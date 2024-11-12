@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZyfraVar2", "ZyfraVar2\ZyfraVar2.csproj", "{DDA55DD3-F9E9-4B9E-86CD-3FBA85147B10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZyfraVar2.Tests", "ZyfraVar2.Tests\ZyfraVar2.Tests.csproj", "{11DA8334-0954-4FA7-AFD8-822F374A362D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZyfraVar2.Tests", "ZyfraVar2.Tests\ZyfraVar2.Tests.csproj", "{11DA8334-0954-4FA7-AFD8-822F374A362D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZyfraVar2.API", "ZyfraVar2.API\ZyfraVar2.API.csproj", "{DD0E4DD9-0C86-4383-BF23-17746D9B603F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{11DA8334-0954-4FA7-AFD8-822F374A362D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11DA8334-0954-4FA7-AFD8-822F374A362D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11DA8334-0954-4FA7-AFD8-822F374A362D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0E4DD9-0C86-4383-BF23-17746D9B603F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0E4DD9-0C86-4383-BF23-17746D9B603F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0E4DD9-0C86-4383-BF23-17746D9B603F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0E4DD9-0C86-4383-BF23-17746D9B603F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
