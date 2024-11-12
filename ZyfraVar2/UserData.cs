@@ -10,7 +10,6 @@ namespace ZyfraVar2
     {
         public string Login { get; set; }
         public string Password { get; set; }
-        public string? SessionId { get; set; }
 
         public UserData(string login, string password)
         {

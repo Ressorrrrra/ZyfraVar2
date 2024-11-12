@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ZyfraVar2.Repository;
 using ZyfraVar2.Services.Interfaces;
 using ZyfraVar2.Services;
+using ZyfraVar2.Repository.Interfaces;
 
 namespace ZyfraVar2.Tests
 {
@@ -20,8 +21,8 @@ namespace ZyfraVar2.Tests
         {
             string filePath = "Test.csv";
             TestFile.CreateFile(filePath);
-            UserRepository repository = new UserRepository(filePath);
-            sessionService = new SessionService(repository);
+            SessionRepository sessionRepository = new SessionRepository();
+            sessionService = new SessionService(sessionRepository);
         }
 
         [Test]
@@ -46,6 +47,20 @@ namespace ZyfraVar2.Tests
             if (sessionService.DeleteSession("")) Assert.Fail();
 
             Assert.Pass();
+        }
+
+        [Test]
+        public void CheckSession()
+        {
+
+            string sessionId = sessionService.CreateSession("login");
+
+            if (!sessionService.CheckSession(sessionId)) Assert.Fail();
+
+            if (sessionService.CheckSession("ww")) Assert.Fail();
+
+            Assert.Pass();
+
         }
 
     }

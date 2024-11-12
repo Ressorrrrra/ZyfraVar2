@@ -28,9 +28,9 @@ namespace ZyfraVar2
                         return new CommandHandlerResponse("Сессия была успешно удалена", true);
                     else
                         return new CommandHandlerResponse("Сессия не была найдена", false);
-                case "loginSession":
+                case "checkSession":
                     sessionId = parts[1];
-                    if (authenticationService.LogIn(sessionId))
+                    if (sessionService.CheckSession(sessionId))
                         return new CommandHandlerResponse("Вы уже вошли в систему", true);
                     else
                         return new CommandHandlerResponse("Данной сессии не существует, войдите по логину и паролю", false);

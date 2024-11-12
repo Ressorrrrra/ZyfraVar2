@@ -20,19 +20,8 @@ namespace ZyfraVar2.Services
 
         public UserData? LogIn(string login, string password)
         {
-            return repository.FindUser(login, password);
+            return repository.LogIn(login, password);
         }
 
-        public bool LogIn(string sessionId)
-        {
-            if (repository.FindUser(sessionId) != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }

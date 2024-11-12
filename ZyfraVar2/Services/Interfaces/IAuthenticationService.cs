@@ -10,8 +10,5 @@ namespace ZyfraVar2.Services.Interfaces
     {
         public UserData? LogIn(string login, string password);
 
-        public bool LogIn(string sessionId);
-
-
     }
 }

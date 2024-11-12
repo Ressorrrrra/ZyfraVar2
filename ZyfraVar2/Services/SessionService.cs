@@ -10,19 +10,25 @@ namespace ZyfraVar2.Services
 {
     public class SessionService : ISessionService
     {
-        IUserRepository repository;
-        public SessionService(IUserRepository repository)
+        private ISessionRepository sessionRepository;
+        public SessionService(ISessionRepository repository)
         {
-            this.repository = repository;
+            this.sessionRepository = repository;
         }
+
+        public bool CheckSession(string sessionId)
+        {
+            return sessionRepository.CheckSession(sessionId);
+        }
+
         public string CreateSession(string login)
         {
-           return repository.CreateSession(login);
+           return sessionRepository.CreateSession(login);
         }
 
         public bool DeleteSession(string sessionId)
         {
-            return repository.DeleteSession(sessionId);
+            return sessionRepository.DeleteSession(sessionId);
         }
     }
 }

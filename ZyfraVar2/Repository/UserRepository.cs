@@ -9,23 +9,18 @@ namespace ZyfraVar2.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private List<UserData> userData;
+        private Dictionary<string, UserData> userData;
 
         public UserRepository(string filePath) 
         {
-            userData = LoadData(filePath);
+            userData = LoadData(filePath).ToDictionary(x => x.Login, x => x);
         }
 
-        public UserData? FindUser(string login, string password)
+        public UserData? LogIn(string login, string password)
         {
-            return userData.Find(i => i.Login.Equals(login) && i.Password.Equals(password));
+            if (userData.TryGetValue(login, out var user) && user.Password != password) { user = null; }
+            return user;
         }
-        public UserData? FindUser(string sessionId)
-        {
-            return userData.Find(i => i.SessionId != null && i.SessionId.Equals(sessionId));
-        }
-
-
         public List<UserData> LoadData(string filePath)
         {
             List<UserData> userData = new List<UserData>();
@@ -43,30 +38,6 @@ namespace ZyfraVar2.Repository
             return userData;
         }
 
-        public string CreateSession(string login)
-        {
-            Random rand = new Random();
-            UserData? user = userData.Find(i => i.Login.Equals(login));
-            string sessionId = "";
-            for (int i = 0; i < 8; i++)
-            {
-                sessionId = sessionId.Insert(sessionId.Length, rand.Next(0, 10).ToString());
-            }
-            user.SessionId = sessionId;
-            return sessionId;
-        }
 
-        public bool DeleteSession(string sessionId)
-        {
-            UserData? user = FindUser(sessionId);
-            if (user != null)
-            {
-                user.SessionId = null;
-                return true;
-            }
-            else
-                return false;
-                
-        }
     }
 }

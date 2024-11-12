@@ -22,9 +22,10 @@ namespace ZyfraVar2.Tests
         {
             string filePath = "Test.csv";
             TestFile.CreateFile(filePath);
-            UserRepository repository = new UserRepository(filePath);
-            authenticationService = new AuthenticationService(repository);
-            sessionService = new SessionService(repository);
+            UserRepository userRepository = new UserRepository(filePath);
+            SessionRepository sessionRepository = new SessionRepository();
+            authenticationService = new AuthenticationService(userRepository);
+            sessionService = new SessionService(sessionRepository);
             commandHandler = new CommandHandler(authenticationService, sessionService);
         }
 

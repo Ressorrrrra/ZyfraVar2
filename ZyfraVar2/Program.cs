@@ -1,4 +1,5 @@
-﻿using ZyfraVar2.Repository;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ZyfraVar2.Repository;
 using ZyfraVar2.Services;
 
 namespace ZyfraVar2
@@ -28,16 +29,16 @@ namespace ZyfraVar2
                 CreateFile(filePath);
             }
 
-
-            UserRepository repository = new UserRepository(filePath);
-            AuthenticationService authenticationService = new AuthenticationService(repository);
-            SessionService sessionService = new SessionService(repository);
+            UserRepository userRepository = new UserRepository(filePath);
+            SessionRepository sessionRepository = new SessionRepository();
+            AuthenticationService authenticationService = new AuthenticationService(userRepository);
+            SessionService sessionService = new SessionService(sessionRepository);
 
             CommandHandler commandHandler = new CommandHandler(authenticationService, sessionService);
 
             Console.WriteLine("Достпные команды:");
             Console.WriteLine("login <логин> <пароль> - вход в систему по логину и паролю");
-            Console.WriteLine("loginSession <идентефикатор сессии> - вход в систему по идентефикатору сессии");
+            Console.WriteLine("checkSession <идентефикатор сессии> - вход в систему по идентефикатору сессии");
             Console.WriteLine("delete <идентефикатор сессии> - удаление сессии по её идентефикатору");
             Console.WriteLine("exit - выход из программы");
 
