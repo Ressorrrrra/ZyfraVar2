@@ -9,11 +9,11 @@ using ZyfraVar2.Repository;
 
 namespace ZyfraVar2.Services
 {
-    public class AuthenticationService : IAuthenticationService
+    public class AuthService : IAuthService
     {
         private IUserRepository repository;
         
-        public AuthenticationService(IUserRepository repository)
+        public AuthService(IUserRepository repository)
         {
             this.repository = repository;
         }

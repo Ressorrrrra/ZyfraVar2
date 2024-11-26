@@ -20,12 +20,8 @@ namespace ZyfraVar2.API
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
@@ -33,40 +29,6 @@ namespace ZyfraVar2.API
 
 
             app.MapControllers();
-
-            app.MapGet("api/sessions/{id:guid}", (Guid id, ISessionService sessionService) =>
-            {
-                var response = sessionService.CheckSession(id.ToString());
-
-                if (response)
-                {
-                    return Results.Ok("Вы уже вошли в систему");
-                }
-                return Results.NotFound("Данный id сессии не был найден");
-            });
-
-
-            app.MapPost("api/users", ([FromBody()] UserData userData, IAuthenticationService authenticationService, ISessionService sessionService) =>
-                {
-                    var response = authenticationService.LogIn(userData.Login, userData.Password);
-                    if (response != null) 
-                    {
-                        return Results.Ok(sessionService.CreateSession(response.Login));
-                    }
-                    return Results.NotFound("Неправильно введён логин или пароль");
-                });
-
-            app.MapDelete("api/sessions/{id:guid}", (Guid id, ISessionService sessionService) =>
-            {
-                var response = sessionService.DeleteSession(id.ToString());
-
-                if (response)
-                {
-                    return Results.Ok("Сессия удалена");
-                }
-                return Results.NotFound("Сессия не была найдена");
-            });
-
 
             app.Run();
         }

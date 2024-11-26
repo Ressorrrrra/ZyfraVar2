@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZyfraVar2.Services.Interfaces
 {
-    public interface IAuthenticationService
+    public interface IAuthService
     {
         public UserData? LogIn(string login, string password);
 

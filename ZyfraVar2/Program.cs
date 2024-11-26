@@ -31,7 +31,7 @@ namespace ZyfraVar2
 
             UserRepository userRepository = new UserRepository(filePath);
             SessionRepository sessionRepository = new SessionRepository();
-            AuthenticationService authenticationService = new AuthenticationService(userRepository);
+            AuthService authenticationService = new AuthService(userRepository);
             SessionService sessionService = new SessionService(sessionRepository);
 
             CommandHandler commandHandler = new CommandHandler(authenticationService, sessionService);

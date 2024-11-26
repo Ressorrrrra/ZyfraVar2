@@ -8,7 +8,7 @@ namespace ZyfraVar2.Tests
 {
     public class AuthenticationServiceTest
     {
-        IAuthenticationService authenticationService;
+        IAuthService authenticationService;
 
 
         [SetUp]
@@ -17,7 +17,7 @@ namespace ZyfraVar2.Tests
             string filePath = "Test.csv";
             TestFile.CreateFile(filePath);
             UserRepository repository = new UserRepository(filePath);
-            authenticationService = new AuthenticationService(repository);
+            authenticationService = new AuthService(repository);
         }
 
         [Test]

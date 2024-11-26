@@ -13,7 +13,7 @@ namespace ZyfraVar2.API
                 .AddSingleton<IUserRepository>(new UserRepository(userDatafilePath))
                 .AddSingleton<ISessionRepository>(new SessionRepository())
                 .AddSingleton<ISessionService, SessionService>()
-                .AddSingleton<IAuthenticationService, AuthenticationService>();
+                .AddSingleton<IAuthService, AuthService>();
 
             return services;
         }

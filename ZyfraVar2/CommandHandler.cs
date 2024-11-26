@@ -9,10 +9,10 @@ namespace ZyfraVar2
 {
     public class CommandHandler
     {
-        IAuthenticationService authenticationService;
+        IAuthService authenticationService;
         ISessionService sessionService;
 
-        public CommandHandler(IAuthenticationService authenticationService, ISessionService sessionService)
+        public CommandHandler(IAuthService authenticationService, ISessionService sessionService)
         {
             this.authenticationService = authenticationService;
             this.sessionService = sessionService;
