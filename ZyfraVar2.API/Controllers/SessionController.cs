@@ -27,7 +27,7 @@ namespace ZyfraVar2.API.Controllers
             {
                 return Ok("Вы уже вошли в систему");
             }
-            return NotFound("Данный id сессии не был найден");
+            return Unauthorized("Данный id сессии не был найден");
         }
 
         [HttpPost]
