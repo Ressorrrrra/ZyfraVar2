@@ -16,7 +16,9 @@ namespace ZyfraVar2.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.CreateDependencies("LoginData.csv");
+
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.CreateDependencies(connectionString);
 
             var app = builder.Build();
 

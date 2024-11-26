@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +10,11 @@ namespace ZyfraVar2
 {
     public class Session
     {
-        public Guid SessionId;
-        public string Owner;
-        public bool IsActive;
 
-        public Session(string username)
-        {
-            SessionId = Guid.NewGuid();
-            Owner = username;
-            IsActive = true;
-        }
+        [Key] public Guid Id { get; set; }
+        public string Owner { get; set; }
+        public bool IsActive { get; set; }
+
+
     }
 }

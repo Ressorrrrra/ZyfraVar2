@@ -16,7 +16,7 @@ namespace ZyfraVar2.Services
             this.sessionRepository = repository;
         }
 
-        public bool CheckSession(string sessionId)
+        public bool CheckSession(Guid sessionId)
         {
             return sessionRepository.CheckSession(sessionId);
         }
@@ -26,7 +26,7 @@ namespace ZyfraVar2.Services
            return sessionRepository.CreateSession(login);
         }
 
-        public bool DeleteSession(string sessionId)
+        public bool DeleteSession(Guid sessionId)
         {
             return sessionRepository.DeleteSession(sessionId);
         }

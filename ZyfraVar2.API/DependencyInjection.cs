@@ -1,4 +1,5 @@
-﻿using ZyfraVar2.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using ZyfraVar2.Repository;
 using ZyfraVar2.Repository.Interfaces;
 using ZyfraVar2.Services;
 using ZyfraVar2.Services.Interfaces;
@@ -6,14 +7,16 @@ namespace ZyfraVar2.API
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection CreateDependencies(this IServiceCollection services,  string userDatafilePath)
+        public static IServiceCollection CreateDependencies(this IServiceCollection services,  string connectionString)
         {
-            
+            services.AddDbContext<SessionsContext>(options =>
+        options.UseNpgsql(connectionString));
+
             services
-                .AddSingleton<IUserRepository>(new UserRepository(userDatafilePath))
-                .AddSingleton<ISessionRepository>(new SessionRepository())
-                .AddSingleton<ISessionService, SessionService>()
-                .AddSingleton<IAuthService, AuthService>();
+                .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<ISessionRepository, SessionRepository>()
+                .AddScoped<ISessionService, SessionService>()
+                .AddScoped<IAuthService, AuthService>();
 
             return services;
         }

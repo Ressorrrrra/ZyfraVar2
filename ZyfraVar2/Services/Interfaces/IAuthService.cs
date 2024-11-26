@@ -8,7 +8,7 @@ namespace ZyfraVar2.Services.Interfaces
 {
     public interface IAuthService
     {
-        public UserData? LogIn(string login, string password);
+        public User? LogIn(string login, string password);
 
     }
 }

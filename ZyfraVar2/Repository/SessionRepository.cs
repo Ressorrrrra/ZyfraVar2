@@ -9,19 +9,29 @@ namespace ZyfraVar2.Repository
 {
     public class SessionRepository : ISessionRepository
     {
-        private Dictionary<string, Session> sessions = new Dictionary<string, Session>();
+        private readonly SessionsContext db;
+
+        public SessionRepository(SessionsContext context)
+        {
+            db = context;
+        }
 
         public string CreateSession(string login)
         {
-            var session = new Session(login);
-            sessions[session.SessionId.ToString()] = session;
-            return session.SessionId.ToString();
+            var session = new Session { Owner = login, Id = Guid.NewGuid(), IsActive = true };
+            db.Sessions.Add(session);
+            db.SaveChanges();
+            return session.Id.ToString();
         }
 
-        public bool DeleteSession(string sessionId)
+        public bool DeleteSession(Guid sessionId)
         {
-            if (sessions.Remove(sessionId))
+            var session = db.Sessions.FirstOrDefault(s => s.Id == sessionId && s.IsActive);
+            if (session != default(Session))
             {
+                session.IsActive = false;
+                db.Update(session);
+                db.SaveChanges();
                 return true;
             }
             else
@@ -29,13 +39,16 @@ namespace ZyfraVar2.Repository
 
         }
 
-        public bool CheckSession(string sessionId)
+        public bool CheckSession(Guid sessionId)
         {
-            if (sessions.TryGetValue(sessionId, out var session) && sessions[sessionId].IsActive == true)
+            var session = db.Sessions.FirstOrDefault(s => s.Id == sessionId && s.IsActive);
+            if (session != default(Session))
             {
                 return true;
             }
-            return false;
+            else
+                return false;
         }
+
     }
 }
