@@ -10,7 +10,7 @@ namespace ZyfraVar2.Repository.Interfaces
     {
         public string CreateSession(string login);
 
-        public bool DeleteSession(string sessionId);
-        public bool CheckSession(string sessionId);
+        public bool DeleteSession(Guid sessionId);
+        public bool CheckSession(Guid sessionId);
     }
 }

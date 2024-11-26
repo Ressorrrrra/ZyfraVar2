@@ -21,7 +21,7 @@ namespace ZyfraVar2.API.Controllers
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetSession (Guid id) 
         {
-            var response = _sessionService.CheckSession(id.ToString());
+            var response = _sessionService.CheckSession(id);
 
             if (response)
             {
@@ -31,7 +31,7 @@ namespace ZyfraVar2.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSession(LogInRequest request)
+        public async Task<IActionResult> CreateSession([FromBody] LogInRequest request)
         {
             var response = _authService.LogIn(request.Login, request.Password);
             if (response != null)
@@ -44,7 +44,7 @@ namespace ZyfraVar2.API.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteSession(Guid id)
         {
-            var response = _sessionService.DeleteSession(id.ToString());
+            var response = _sessionService.DeleteSession(id);
 
             if (response)
             {

@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace ZyfraVar2
 {
-    public class UserData
+    public class User
     {
+        public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
 
-        public UserData(string login, string password)
-        {
-            Login = login;
-            Password = password;
-        }
+
 
     }
 }

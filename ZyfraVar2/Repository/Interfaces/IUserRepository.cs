@@ -8,10 +8,7 @@ namespace ZyfraVar2.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        public UserData? LogIn(string login, string password);
-
-
-        public List<UserData> LoadData(string filePath);
+        public User? LogIn(string login, string password);
 
 
     }

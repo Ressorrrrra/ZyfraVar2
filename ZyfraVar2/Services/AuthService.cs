@@ -18,7 +18,7 @@ namespace ZyfraVar2.Services
             this.repository = repository;
         }
 
-        public UserData? LogIn(string login, string password)
+        public User? LogIn(string login, string password)
         {
             return repository.LogIn(login, password);
         }
