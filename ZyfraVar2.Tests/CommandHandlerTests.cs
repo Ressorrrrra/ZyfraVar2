@@ -11,7 +11,7 @@ namespace ZyfraVar2.Tests
 {
     public class CommandHandlerTests
     {
-        IAuthenticationService authenticationService;
+        IAuthService authenticationService;
         ISessionService sessionService;
         CommandHandler commandHandler;
         string sessionId;
@@ -24,7 +24,7 @@ namespace ZyfraVar2.Tests
             TestFile.CreateFile(filePath);
             UserRepository userRepository = new UserRepository(filePath);
             SessionRepository sessionRepository = new SessionRepository();
-            authenticationService = new AuthenticationService(userRepository);
+            authenticationService = new AuthService(userRepository);
             sessionService = new SessionService(sessionRepository);
             commandHandler = new CommandHandler(authenticationService, sessionService);
         }
